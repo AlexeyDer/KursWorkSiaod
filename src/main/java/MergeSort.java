@@ -4,8 +4,7 @@ import java.util.List;
 import java.lang.String;
 
 public class MergeSort {
-    private Comparator<People> pdc = new PeopleDataComparator().thenComparing(new PeopleSumComparator());
-
+ 
     public static List<People> sort(List<People> peoples) {
         if (peoples.size() < 2) {
             return peoples;
@@ -18,7 +17,6 @@ public class MergeSort {
         );
 
     }
-
 
     private static List<People> merge(List<People> left, List<People> right) {
         int leftIndex = 0;

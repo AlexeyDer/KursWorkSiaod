@@ -13,11 +13,16 @@ public class DataBase {
         peoples = new ArrayList<>();
     }
 
+    public List<People> getPeoples() {
+        return peoples;
+    }
+
     public void read(String path) throws IOException {
         FileInputStream fis = new FileInputStream(path);
         while (fis.available() > 0) {
             byte[] b = fis.readNBytes(64);
             People people = new People();
+
             people.setFIO_vklad(new String (Arrays.copyOfRange(b, 0, 29), "CP866" ));
             people.setDate(new String (Arrays.copyOfRange(b, 32, 41), "CP866"));
             people.setFioAdv(new String(Arrays.copyOfRange(b, 42, 63), "CP866"));
@@ -32,10 +37,10 @@ public class DataBase {
         }
     }
 
-    public void print() {
+    public void print(List<People> list) {
         int j = 1;
 
-        for(People i : peoples) {
+        for(People i : list) {
             System.out.println(j++ + ".\n" + i.getFioVklad());
             System.out.println(i.getSum());
             System.out.println(i.getDate());
@@ -43,5 +48,8 @@ public class DataBase {
             System.out.println("---------------------------------");
         }
     }
+
+
+
 
 }

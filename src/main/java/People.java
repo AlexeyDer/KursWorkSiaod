@@ -4,10 +4,6 @@ public class People {
     private String date;
     private String fioAdv;
 
-    public People() {
-
-    }
-
     public void setFIO_vklad(String FIO_vklad) {
         this.fioVklad = FIO_vklad;
     }

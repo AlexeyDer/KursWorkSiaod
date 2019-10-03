@@ -37,15 +37,26 @@ public class DataBase {
         }
     }
 
-    public void print(List<People> list) {
-        int j = 1;
+    public void print(List<People> list) throws IOException {
+         int j = 1;
+         boolean b = true;
 
         for(People i : list) {
-            System.out.println(j++ + ".\n" + i.getFioVklad());
+            System.out.println(j + "\n" + i.getFioVklad());
             System.out.println(i.getSum());
             System.out.println(i.getDate());
             System.out.println(i.getFioAdv());
             System.out.println("---------------------------------");
+
+            if (b == true && j % 20 == 0) {
+                char ch = (char)  System.in.read();
+
+                if (ch == 'q')
+                    break;
+                if (ch == 'a');
+                    b = false;
+            }
+            j++;
         }
     }
 

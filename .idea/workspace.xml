@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5b1a4ce-f49c-44fe-ab5f-781f80a2c0b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MergeSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/PeopleDataComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/PeopleSumComparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/DataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/DataBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/People.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/People.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/People.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MergeSort.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

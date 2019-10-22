@@ -4,7 +4,7 @@ import java.util.List;
 import java.lang.String;
 
 public class MergeSort {
- 
+
     public static List<People> sort(List<People> peoples) {
         if (peoples.size() < 2) {
             return peoples;

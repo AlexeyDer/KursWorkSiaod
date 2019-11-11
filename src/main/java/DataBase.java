@@ -70,7 +70,8 @@ public class DataBase {
 
     public List<People> binSearch(List<People> list, int key) {
        int l = 0;
-       int r = list.size();
+       int r = list.size() - 1;
+
        List<People> result = new ArrayList<>();
 
        while (l <= r) {

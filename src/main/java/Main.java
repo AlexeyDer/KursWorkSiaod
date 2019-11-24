@@ -15,16 +15,18 @@ public class Main {
         db.print(sortList);
 
         System.out.print("\n\nПоиске по сумме:\n ");
-        int c = scanner.nextInt();
 
-        List<People> findList = db.binSearch(sortList, c);
-        if (findList != null)
-            db.print(findList);
-        else
-            System.out.println("Таких объекта нет");
+        while (true) {
+            int c = scanner.nextInt();
+            List<People> findList = db.binSearch(sortList, c);
 
-
-
+            if (!findList.isEmpty()) {
+                db.print(findList);
+                break;
+            }
+            else
+                System.out.println("Таких объектов нет, попробуйте еще раз!");
+        }
 
 
 

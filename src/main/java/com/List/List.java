@@ -1,4 +1,4 @@
-import javax.swing.*;
+package com.List;
 
 class Node {
 	byte data;
@@ -173,7 +173,7 @@ class Queue {
 
 
 
-public class Main {
+class Main {
 	public static void main(String args[]) {
 		Queue q = new Queue();
 		Stack s = new Stack();
@@ -189,19 +189,19 @@ public class Main {
 			}
 				
 		}
-		System.out.print("Выводим Queue: ");
+		System.out.print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ com.List.Queue: ");
 		list.Print(q.head);
-		System.out.print("Выводим Stack: ");
+		System.out.print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ com.List.Stack: ");
 		list.Print(s.head);
 		
 		byte k = 2;
 		if (q.AddOneElement(q.head, k, k))
-			System.out.print("Нет такого элемента");
+			System.out.print("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		
-		System.out.println("\nУдаляем лишние элементы в Queue: ");
+		System.out.println("\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ com.List.Queue: ");
 		q.DeleteDuplicateItems(q.head);
 		list.Print(q.head);
-		System.out.println("\nКоличество элементов в Queue: " + list.Amount(q.head));
+		System.out.println("\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ com.List.Queue: " + list.Amount(q.head));
 		
 		
 		byte b = 1;
@@ -236,9 +236,9 @@ public class Main {
 //		
 
 		
-		System.out.println("\nКоличество элементов в списке: " + list.Amount(q.head));
+		System.out.println("\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + list.Amount(q.head));
 		
-		new Gui(s.head, q.head);
+		//new Gui(s.head, q.head);
 		
 		
 	}

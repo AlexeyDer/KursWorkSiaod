@@ -1,11 +1,9 @@
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class DataBase {
     private List<People> peoples;
@@ -51,18 +49,20 @@ public class DataBase {
          boolean b = true;
 
         for(People i : list) {
-            System.out.println("Индекс записи: " + j + "\nФИО Вкладчика: " + i.getFioVklad());
-            System.out.println("Сумма вклада: " + i.getSum());
-            System.out.println("Дата вкалада: " + i.getDate());
-            System.out.println("ФИО Адвоката: " + i.getFioAdv());
-            System.out.println("---------------------------------");
+            System.out.print(j + " ФИО Вкладчика: " + i.getFioVklad());
+            System.out.print(" Сумма вклада: " + i.getSum());
+            System.out.print(" Дата вкалада: " + i.getDate());
+            System.out.println(" ФИО Адвоката: " + i.getFioAdv());
+
             Scanner sc = new Scanner(System.in);
 
             if (b == true && j % 20 == 0) {
-                char ch = (char) System.in.read();
+                String ch = sc.next();
 
-                if (ch == 'q')
+                if (ch == "q")
                     break;
+                if (ch.equals("a"))
+                    b = false;
             }
             j++;
         }
@@ -72,7 +72,7 @@ public class DataBase {
        int l = 0;
        int r = list.size() - 1;
 
-       List<People> result = new ArrayList<>();
+       List<People> result = new LinkedList<>();
 
        while (l <= r) {
            int mid = (l + r) / 2;
@@ -81,10 +81,10 @@ public class DataBase {
            else if (list.get(mid).getSum() > key)
                r = mid - 1;
            else {
-               while (list.get(mid).getSum() == key && mid != 0 ) {
+               while (list.get(mid).getSum() == key && list.get(mid - 1).getSum() == key && mid != 0) {
                     --mid;
                }
-               while (list.get(mid).getSum() == key) {
+               while (mid < list.size() && list.get(mid).getSum() == key) {
                    result.add(list.get(mid));
                    ++mid;
                }

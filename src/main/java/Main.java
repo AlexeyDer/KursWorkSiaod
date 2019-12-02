@@ -23,6 +23,18 @@ public class Main {
         avl.print(avl.root);
 
 
+        System.out.println("Поиск в дереве, введите фио вкладчика: ");
+        while (true) {
+            Vertex p = avl.search(avl.root, scanner.nextLine());
+
+            if (p == null){
+                System.out.println("Попробуйте еще раз!");
+            } else {
+                db.printOneElement(p.getPeople());
+                break;
+            }
+        }
+
 //        System.out.print("\n\nПоиске по сумме:\n ");
 //        while (true) {
 //            int c = scanner.nextInt();

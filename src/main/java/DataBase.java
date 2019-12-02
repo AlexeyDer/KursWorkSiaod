@@ -22,9 +22,9 @@ public class DataBase {
             byte[] b = fis.readNBytes(64);
             People people = new People();
 
-            people.setFIO_vklad(new String (Arrays.copyOfRange(b, 0, 29), "CP866" ));
-            people.setDate(new String (Arrays.copyOfRange(b, 32, 41), "CP866"));
-            people.setFioAdv(new String(Arrays.copyOfRange(b, 42, 63), "CP866"));
+            people.setFIO_vklad(new String (Arrays.copyOfRange(b, 0, 29), "CP866" ).trim());
+            people.setDate(new String (Arrays.copyOfRange(b, 32, 41), "CP866").trim());
+            people.setFioAdv(new String(Arrays.copyOfRange(b, 42, 63), "CP866").trim());
 
             ByteBuffer byteBuffer = ByteBuffer.allocate(2);
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -34,6 +34,14 @@ public class DataBase {
 
             peoples.add(people);
         }
+    }
+
+    public  void printOneElement(People p) {
+        System.out.println("\nФИО Вкладчика: " + p.getFioVklad());
+        System.out.println("\tСумма вклада: " + p.getSum());
+        System.out.println("Дата вкалада: " + p.getDate());
+        System.out.println("ФИО Адвоката: " + p.getFioAdv());
+        System.out.println("---------------------------------");
     }
 
     public  void printOneElement(List<People> list, int i) {
@@ -50,7 +58,7 @@ public class DataBase {
 
         for(People i : list) {
             System.out.print(j + " ФИО Вкладчика: " + i.getFioVklad());
-            System.out.print(" Сумма вклада: " + i.getSum());
+            System.out.print("\tСумма вклада: " + i.getSum());
             System.out.print(" Дата вкалада: " + i.getDate());
             System.out.println(" ФИО Адвоката: " + i.getFioAdv());
 

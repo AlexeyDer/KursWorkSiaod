@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class AVL {
     DataBase db;
 
@@ -9,6 +12,16 @@ public class AVL {
 
     public int max(int a, int b) {
         return (a > b) ? a : b;
+    }
+
+    public Vertex search(Vertex p, String key) {
+        if (p == null || p.getPeople().getFioVklad().equals(key)) {
+            return p;
+        }
+        if (key.compareTo(p.getPeople().getFioVklad()) < 0)
+            return search(p.getLeft(), key);
+        else
+            return search(p.getRight(), key);
     }
 
     public Vertex LR(Vertex y) {

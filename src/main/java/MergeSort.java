@@ -21,18 +21,18 @@ public class MergeSort {
     private static List<People> merge(List<People> left, List<People> right) {
         int leftIndex = 0;
         int rightIndex = 0;
-        List <People> merge = new ArrayList<>();
+        List<People> merge = new ArrayList<>();
 
         while (leftIndex < left.size() && rightIndex < right.size()) {
-            if  (compareSum(left.get(leftIndex), right.get(rightIndex)) < 0)
-                    merge.add(left.get(leftIndex++));
+            if (compareSum(left.get(leftIndex), right.get(rightIndex)) < 0)
+                merge.add(left.get(leftIndex++));
             else {
-                 if (compareSum(left.get(leftIndex), right.get(rightIndex)) > 0)
+                if (compareSum(left.get(leftIndex), right.get(rightIndex)) > 0)
                     merge.add(right.get(rightIndex++));
-                 else if (compareData(left.get(leftIndex), right.get(rightIndex)) < 0)
-                     merge.add(left.get(leftIndex++));
-                        else
-                            merge.add(right.get(rightIndex++));
+                else if (compareData(left.get(leftIndex), right.get(rightIndex)) < 0)
+                    merge.add(left.get(leftIndex++));
+                else
+                    merge.add(right.get(rightIndex++));
             }
         }
 
@@ -50,11 +50,21 @@ public class MergeSort {
             return 0;
     }
 
+
     public static int compareData(People a, People b) {
-        if (a.getDate().compareTo(b.getDate())  < 0)
+        if (a.getDate().compareTo(b.getDate()) < 0)
             return 1;
-        else if (a.getDate().compareTo(b.getDate())  < 0)
+        else if (a.getDate().compareTo(b.getDate()) > 0)
             return -1;
+        else
+            return 0;
+    }
+
+    public static int compareFioVklad(People a, People b) {
+        if (a.getFioVklad().compareTo(b.getFioVklad()) < 0)
+            return -1;
+        else if (a.getFioVklad().compareTo(b.getFioVklad()) > 0)
+            return 1;
         else
             return 0;
     }

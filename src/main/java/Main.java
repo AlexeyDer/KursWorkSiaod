@@ -12,21 +12,29 @@ public class Main {
 
         List<People> sortList = db.getPeoples();
         sortList = mergeSort.sort(sortList);
-        db.print(sortList);
+//        db.print(sortList);
 
-        System.out.print("\n\nПоиске по сумме:\n ");
 
-        while (true) {
-            int c = scanner.nextInt();
-            List<People> findList = db.binSearch(sortList, c);
-
-            if (!findList.isEmpty()) {
-                db.print(findList);
-                break;
-            }
-            else
-                System.out.println("Таких объектов нет, попробуйте еще раз!");
+        AVL avl = new AVL();
+        for (int i = 0; i < sortList.size(); i++) {
+            avl.root = avl.insert(avl.root, sortList.get(i));
         }
+
+        avl.print(avl.root);
+
+
+//        System.out.print("\n\nПоиске по сумме:\n ");
+//        while (true) {
+//            int c = scanner.nextInt();
+//            List<People> findList = db.binSearch(sortList, c);
+//
+//            if (!findList.isEmpty()) {
+//                db.print(findList);
+//                break;
+//            }
+//            else
+//                System.out.println("Таких объектов нет, попробуйте еще раз!");
+//        }
 
 
 

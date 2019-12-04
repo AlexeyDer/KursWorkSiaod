@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AVL {
@@ -100,43 +101,27 @@ public class AVL {
             return (new Vertex(data));
 
         int compFioVklad = compareFioVklad(data, p.getPeople());
-        int compData = compareData(data, p.getPeople());
-        int compAdv = compareFioAdv(data, p.getPeople());
-        int compSum = compareSum(data, p.getPeople());
 
         if (compFioVklad > 0)
             p.setLeft(insert(p.getLeft(), data));
         else if (compFioVklad < 0) {
             p.setRight(insert(p.getRight(), data));
         } else {
-            if (compData > 0)
-                p.setLeft(insert(p.getLeft(), data));
-            else if (compData < 0)
-                p.setRight(insert(p.getRight(), data));
-            else if (compAdv > 0)
-                p.setLeft(insert(p.getLeft(), data));
-            else if (compAdv < 0)
-                p.setRight(insert(p.getRight(), data));
-            else if (compSum > 0)
-                p.setLeft(insert(p.getLeft(), data));
-            else if (compSum < 0)
-                p.setRight(insert(p.getRight(), data));
-            else
-                return p;
-        }
+//            if (p.getAgain() != null) {
+//                Vertex k = p;
+//                while (p.getAgain() != null) {
+//                    p = p.getAgain();
+//                }
+//                p.setAgain(k);
+//            } else
+                p.setAgain(p);
 
-//        if (data < p.getPeople())
-//            p.setLeft(insert(p.getLeft(), data));
-//        else if (data > p.getData())
-//            p.setRight(insert(p.getRight(), data));
-//        else
-//            return p;
+            return p;
+        }
 
         p.setHeight(1 + max(height(p.getLeft()), height(p.getRight())));
 
         int balance = getBalance(p);
-
-//        int pLeft, pRight;
 
         // LL
         if (balance > 1 && compareFioVklad(data, p.getLeft().getPeople()) > 0) {
@@ -158,27 +143,6 @@ public class AVL {
             p.setRight(LR(p.getRight()));
             return RL(p);
         }
-
-//        // LL
-//        if (balance > 1 && data < p.getLeft().getData()) {
-//            return LR(p);
-//        }
-
-//        // RR
-//        if (balance < -1 && data > p.getRight().getData())
-//            return RL(p);
-
-//        // LR
-//        if (balance > 1 && data > p.getLeft().getData()) {
-//            p.setLeft(RL(p.getLeft()));
-//            return LR(p);
-//        }
-
-//        // RL
-//        if (balance < -1 && data < p.getRight().getData()) {
-//            p.setRight(LR(p.getRight()));
-//            return RL(p);
-//        }
 
         return p;
     }
@@ -202,6 +166,16 @@ public class AVL {
             System.out.print(" Дата вкалада: " + p.getPeople().getDate());
             System.out.println(" ФИО Адвоката: " + p.getPeople().getFioAdv());
             System.out.println("---------------------------------");
+
+
+            if (p.getAgain() != null) {
+                System.out.print(g++ + " ФИО Вкладчика: " + p.getAgain().getPeople().getFioVklad());
+                System.out.print(" Сумма вклада: " + p.getAgain().getPeople().getSum());
+                System.out.print(" Дата вкалада: " + p.getAgain().getPeople().getDate());
+                System.out.println(" ФИО Адвоката: " + p.getAgain().getPeople().getFioAdv());
+                System.out.println("---------------------------------");
+            }
+
 
             print(p.getRight());
         }

@@ -22,8 +22,8 @@ public class DataBase {
             byte[] b = fis.readNBytes(64);
             People people = new People();
 
-            people.setFIO_vklad(new String (Arrays.copyOfRange(b, 0, 29), "CP866" ).trim());
-            people.setDate(new String (Arrays.copyOfRange(b, 32, 41), "CP866").trim());
+            people.setFIO_vklad(new String(Arrays.copyOfRange(b, 0, 29), "CP866").trim());
+            people.setDate(new String(Arrays.copyOfRange(b, 32, 41), "CP866").trim());
             people.setFioAdv(new String(Arrays.copyOfRange(b, 42, 63), "CP866").trim());
 
             ByteBuffer byteBuffer = ByteBuffer.allocate(2);
@@ -36,15 +36,31 @@ public class DataBase {
         }
     }
 
-    public  void printOneElement(People p) {
+    public void printOneElement(Vertex p) {
+        System.out.println("\nФИО Вкладчика: " + p.getPeople().getFioVklad());
+        System.out.println("Сумма вклада: " + p.getPeople().getSum());
+        System.out.println("Дата вкалада: " + p.getPeople().getDate());
+        System.out.println("ФИО Адвоката: " + p.getPeople().getFioAdv());
+        System.out.println("---------------------------------");
+
+        if (p.getAgain() != null) {
+            System.out.println("\nФИО Вкладчика: " + p.getAgain().getPeople().getFioVklad());
+            System.out.println("Сумма вклада: " + p.getAgain().getPeople().getSum());
+            System.out.println("Дата вкалада: " + p.getAgain().getPeople().getDate());
+            System.out.println("ФИО Адвоката: " + p.getAgain().getPeople().getFioAdv());
+            System.out.println("---------------------------------");
+        }
+    }
+
+    public void printOneElement(People p) {
         System.out.println("\nФИО Вкладчика: " + p.getFioVklad());
-        System.out.println("\tСумма вклада: " + p.getSum());
+        System.out.println("Сумма вклада: " + p.getSum());
         System.out.println("Дата вкалада: " + p.getDate());
         System.out.println("ФИО Адвоката: " + p.getFioAdv());
         System.out.println("---------------------------------");
     }
 
-    public  void printOneElement(List<People> list, int i) {
+    public void printOneElement(List<People> list, int i) {
         System.out.println("\nИндекс записи: " + i + "\nФИО Вкладчика: " + list.get(i).getFioVklad());
         System.out.println("Сумма вклада: " + list.get(i).getSum());
         System.out.println("Дата вкалада: " + list.get(i).getDate());
@@ -53,12 +69,12 @@ public class DataBase {
     }
 
     public void print(List<People> list) throws IOException {
-         int j = 1;
-         boolean b = true;
+        int j = 1;
+        boolean b = true;
 
-        for(People i : list) {
+        for (People i : list) {
             System.out.print(j + " ФИО Вкладчика: " + i.getFioVklad());
-            System.out.print("\tСумма вклада: " + i.getSum());
+            System.out.print("Сумма вклада: " + i.getSum());
             System.out.print(" Дата вкалада: " + i.getDate());
             System.out.println(" ФИО Адвоката: " + i.getFioAdv());
 
@@ -77,30 +93,33 @@ public class DataBase {
     }
 
     public List<People> binSearch(List<People> list, int key) {
-       int l = 0;
-       int r = list.size() - 1;
+        int l = 0;
+        int r = list.size() - 1;
 
-       List<People> result = new LinkedList<>();
+        List<People> result = new LinkedList<>();
 
-       while (l <= r) {
-           int mid = (l + r) / 2;
-           if (list.get(mid).getSum() < key)
+        while (l <= r) {
+            int mid = (l + r) / 2;
+            if (list.get(mid).getSum() < key)
                 l = mid + 1;
-           else if (list.get(mid).getSum() > key)
-               r = mid - 1;
-           else {
-               while (list.get(mid).getSum() == key && list.get(mid - 1).getSum() == key && mid != 0) {
-                    --mid;
-               }
-               while (mid < list.size() && list.get(mid).getSum() == key) {
-                   result.add(list.get(mid));
-                   ++mid;
-               }
-               return result;
-           }
-       }
+            else if (list.get(mid).getSum() > key)
+                r = mid - 1;
+            else {
 
-       return null;
+                while (mid < list.size() - 1 && list.get(mid).getSum() == key) {
+                    result.add(list.get(mid));
+                    ++mid;
+                }
+
+                while (list.get(mid).getSum() == key && list.get(mid - 1).getSum() == key && mid != 0) {
+                    --mid;
+                }
+
+                return result;
+            }
+        }
+
+        return null;
     }
 
 

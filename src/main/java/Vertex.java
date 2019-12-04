@@ -1,8 +1,11 @@
+import java.util.List;
+
 public class Vertex {
     private People people;
     private int height;
     private Vertex Right, Left;
     private int Bal;
+    private Vertex again;
 
     Vertex(People data) {
         this.people = data;
@@ -10,6 +13,14 @@ public class Vertex {
         this.Left = null;
         this.Right = null;
         this.Bal = 0;
+    }
+
+    public Vertex getAgain() {
+        return again;
+    }
+
+    public void setAgain(Vertex again) {
+        this.again = again;
     }
 
     public int getBal() {

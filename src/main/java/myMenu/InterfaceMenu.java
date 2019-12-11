@@ -1,11 +1,12 @@
 package myMenu;
 
-import myMenu.Menu;
+import KursWork.Menu;
 
 public interface InterfaceMenu {
-    public final int menuSize = 5;
+    public final int menuSize = 7;
     public final String templateMenu[] = {
-            "Считывание базы данных", "Сортировка БД", "Просмотр базы данных", "Поиск по сумме в БД", "Кодирование"
+            "Считывание базы данных", "Сортировка БД", "Просмотр базы данных", "Вывести отсортированную базу данных",
+            "Поиск по сумме в отсортированной БД", "Кодирование", "Завершить программу"
     };
 
 

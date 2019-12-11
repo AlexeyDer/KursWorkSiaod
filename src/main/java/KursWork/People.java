@@ -1,3 +1,5 @@
+package KursWork;
+
 public class People {
     private String fioVklad;
     private int sum;

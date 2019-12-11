@@ -1,17 +1,27 @@
+package KursWork;
+
+import myMenu.InterfaceMenu;
+
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Main implements InterfaceMenu {
 
     public static void main(String[] args) throws IOException {
+
         Scanner scanner = new Scanner(System.in);
         MergeSort mergeSort = new MergeSort();
         DataBase db = new DataBase();
+
+        //Считывание бд
         db.read("testBase3.dat");
 
         List<People> sortList = db.getPeoples();
+        // Сортировка БД
         sortList = mergeSort.sort(sortList);
+
+        //Вывод отсортированной БД
         db.print(sortList);
 
         System.out.print("\n\nПоиске по сумме:\n ");

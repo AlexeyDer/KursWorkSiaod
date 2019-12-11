@@ -1,35 +1,37 @@
+package KursWork;
+
 import java.util.Arrays;
 import java.util.Random;
 
 public class SDP  {
 
-//    public static Vertex SDP(Vertex p, int data) {
+//    public static KursWork.Vertex KursWork.SDP(KursWork.Vertex p, int data) {
 //        while (p != null) {
 //            if (data < p.getData()) {
 //                if (p.getLeft() != null)
 //                    p = p.getLeft();
 //                else
-//                    p.setLeft(new Vertex(data));
+//                    p.setLeft(new KursWork.Vertex(data));
 //            } else {
 //                if (data > p.getData()) {
 //                    if (p.getRight() != null)
 //                        p = p.getRight();
 //                    else
-//                        p.setRight(new Vertex(data));
+//                        p.setRight(new KursWork.Vertex(data));
 //                } else
 //                    break;
 //            }
 //        }
 //        if (p == null) {
-//            p = new Vertex(data);
+//            p = new KursWork.Vertex(data);
 //        }
 //        return p;
 //    }
 //
 //
-//    public static Vertex SDP2(Vertex p, int data) {
+//    public static KursWork.Vertex SDP2(KursWork.Vertex p, int data) {
 //        if (p == null) {
-//            p = new Vertex(data);
+//            p = new KursWork.Vertex(data);
 //            return p;
 //        } else {
 //            if (data < p.getData())
@@ -48,7 +50,7 @@ public class SDP  {
 //
 //        boolean b = true;
 //
-//        Vertex root = null;
+//        KursWork.Vertex root = null;
 //        Random random = new Random();
 //
 //        int[] m = new int[n];
@@ -79,17 +81,17 @@ public class SDP  {
 //		tree.Obhod1(bTree.root);
 //
 //
-//        AVL avl = new AVL();
+//        KursWork.AVL avl = new KursWork.AVL();
 //        for (int i = 0; i < n; i++) {
 //            avl.root = avl.insert(avl.root, m[i]);
 //        }
 //        System.out.println("\nОбход АВЛ: ");
 //        tree.Obhod1(avl.root);
 //
-//        root = SDP(root, m[0]);
+//        root = KursWork.SDP(root, m[0]);
 //
 //        for (int i = 1; i < n; i++) {
-//            SDP(root, m[i]);
+//            KursWork.SDP(root, m[i]);
 //        }
 //        System.out.println("\nSDP 1 Obhod 1: ");
 //        Obhod1(root);
@@ -100,13 +102,13 @@ public class SDP  {
 //            SDP2(root, m[i]);
 //        }
 //
-//        System.out.println("SDP 2 Obhod2: ");
+//        System.out.println("KursWork.SDP 2 Obhod2: ");
 //        Obhod1(root);
 //        System.out.println();
 //
 //        System.out.println("\nISDP obhod: ");
 //        Arrays.sort(m);
-//        Vertex rootISPD = tree.CreateISPD(0, n - 1, m);
+//        KursWork.Vertex rootISPD = tree.CreateISPD(0, n - 1, m);
 //        tree.Obhod1(rootISPD);
 //
 //
@@ -138,7 +140,7 @@ public class SDP  {
 //
 //
 ///////////////////////////////////////////////////////////////////////////
-//// Удаление из AVL
+//// Удаление из KursWork.AVL
 ////        Scanner scanner = new Scanner(System.in);
 ////
 ////        System.out.println("\n\nУдаление:");

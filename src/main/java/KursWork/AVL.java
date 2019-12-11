@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+package KursWork;
 
 public class AVL {
     DataBase db;
@@ -108,7 +106,7 @@ public class AVL {
             p.setRight(insert(p.getRight(), data));
         } else {
 //            if (p.getAgain() != null) {
-//                Vertex k = p;
+//                KursWork.Vertex k = p;
 //                while (p.getAgain() != null) {
 //                    p = p.getAgain();
 //                }
@@ -181,7 +179,7 @@ public class AVL {
         }
     }
 
-//    public Vertex delete(Vertex root, int data) {
+//    public KursWork.Vertex delete(KursWork.Vertex root, int data) {
 //        if (root == null)
 //            return root;
 //
@@ -191,7 +189,7 @@ public class AVL {
 //            root.setRight(delete(root.getRight(), data));
 //        else {
 //            if ((root.getLeft() == null || (root.getRight() == null))) {
-//                Vertex temp = null;
+//                KursWork.Vertex temp = null;
 //                if (temp == root.getLeft())
 //                    temp = root.getRight();
 //                else
@@ -203,7 +201,7 @@ public class AVL {
 //                } else
 //                    root = temp;
 //            } else {
-//                Vertex temp = minValueNode(root.getRight());
+//                KursWork.Vertex temp = minValueNode(root.getRight());
 //                root.setData(temp.getData());
 //                root.setRight(delete(root.getRight(), temp.getData()));
 //            }

@@ -1,0 +1,30 @@
+@startuml
+
+interface InterfaceMenu {
+    + menuSize: int
+    + templateMenu: String[]
+
+    +printMenu(menu: Menu, size: int)
+}
+
+ InterfaceMenu <.. Menu
+
+Menu <|--Button
+
+class Menu {
+    -menuIndex: int
+    -menu: String[]
+}
+
+'class NameSubmenu {
+'     - List<String>names
+'
+'}
+
+class Button {
+  -ch: char
+  -code: int
+  + press(mainMenu: Menu)
+}
+
+@enduml

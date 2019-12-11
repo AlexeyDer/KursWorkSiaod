@@ -1,4 +1,4 @@
-import java.util.List;
+package KursWork;
 
 public class Vertex {
     private People people;

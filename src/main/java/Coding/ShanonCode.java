@@ -12,10 +12,6 @@ public class ShanonCode {
     private double[] L;
     private List<Crypto> C;
 
-    public ShanonCode() {
-
-    }
-
     public List<Crypto> fillAlphabet(List<Crypto> cryptos, String text) throws IOException {
 
         boolean isHas = false;
@@ -56,8 +52,6 @@ public class ShanonCode {
         double[] L = new double[cryptos.size()];
         double[] Q = new double[cryptos.size()];
 
-//        cryptos.set(0, new Crypto(0));
-//        cryptos.get(0).setP(0);
         Q[0] = 0;
 
         for (int i = 1; i < cryptos.size(); i++) {
@@ -116,12 +110,4 @@ public class ShanonCode {
         return cryptos;
     }
 
-    public static int log2(int n) {
-        if (n <= 0) throw new IllegalArgumentException();
-        return 31 - Integer.numberOfLeadingZeros(n);
-    }
-
-    public static void main(String[] args) {
-
-    }
 }

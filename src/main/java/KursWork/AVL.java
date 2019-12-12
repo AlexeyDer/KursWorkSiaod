@@ -155,6 +155,10 @@ public class AVL {
 
     private static int g = 1;
 
+    public static void setG(int g) {
+        AVL.g = g;
+    }
+
     public void print(Vertex p) {
         if (p != null) {
             print(p.getLeft());
@@ -177,6 +181,7 @@ public class AVL {
 
             print(p.getRight());
         }
+
     }
 
 //    public KursWork.Vertex delete(KursWork.Vertex root, int data) {

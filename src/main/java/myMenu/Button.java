@@ -16,6 +16,7 @@ public class Button extends Menu {
     private char ch;
     private int code;
     private static boolean flag = false;
+    private static boolean avlTreeFlag = true;
 
 
     public Button() {
@@ -47,11 +48,13 @@ public class Button extends Menu {
             switch (menu.getMenuIndex()) {
                 case 0:
                     //
-                    if (avl.root == null) {
+                    if (avlTreeFlag) {
                         for (int i = 0; i < findList.size(); i++) {
                             avl.root = avl.insert(avl.root, findList.get(i));
                         }
+                        avlTreeFlag = false;
                     }
+                    AVL.setG(1);
                     avl.print(avl.root);
                     break;
                 case 1:
@@ -59,6 +62,7 @@ public class Button extends Menu {
                         System.out.println("---------------------------------------");
                         System.out.println("Поиск в дереве, введите фио вкладчика: ");
                         while (true) {
+
                             Vertex p = avl.search(avl.root, scanner.nextLine());
 
                             if (p == null) {
@@ -95,6 +99,7 @@ public class Button extends Menu {
                     // Сортируем нашу дб
                     MergeSort mergeSort = new MergeSort();
                     sortList = mergeSort.sort(db.getPeoples());
+                    System.out.println("База данных отсортированна!");
                     // Запоминаем что дб отсортированна
                     flag = true;
                     return sortList;

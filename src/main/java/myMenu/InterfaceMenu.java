@@ -12,7 +12,7 @@ public interface InterfaceMenu {
 
     public final int choiceMenuSize = 3;
     public final String choiceMenu[] = {
-            "Вывести дерево поиска", "Посик по дереву", "Вернуться назад"
+            "Вывести дерево поиска", "Поиcк по дереву", "Вернуться назад"
     };
 
     public default void printMenu(Menu menu, String[] notes, int size) {

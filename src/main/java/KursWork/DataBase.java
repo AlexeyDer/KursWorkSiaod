@@ -75,7 +75,7 @@ public class DataBase {
 
         for (People i : list) {
             System.out.print(j + " ФИО Вкладчика: " + i.getFioVklad());
-            System.out.print("Сумма вклада: " + i.getSum());
+            System.out.print(" Сумма вклада: " + i.getSum());
             System.out.print(" Дата вкалада: " + i.getDate());
             System.out.println(" ФИО Адвоката: " + i.getFioAdv());
 

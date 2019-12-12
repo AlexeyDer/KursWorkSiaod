@@ -1,14 +1,18 @@
 package myMenu;
 
 import KursWork.*;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
+import java.sql.DatabaseMetaData;
 import java.util.List;
 import java.util.Scanner;
 
 public class Button extends Menu {
     private char ch;
     private int code;
+    private static boolean flag = false;
+
 
     public Button() {
         this.code = 0;
@@ -31,95 +35,39 @@ public class Button extends Menu {
         }
     }
 
-    public boolean pressChoiceMenu(Menu menu) throws IOException {
+    public boolean pressChoiceMenu(Menu menu, List<People> findList, AVL avl, DataBase db) throws IOException {
         Scanner scanner = new Scanner(System.in);
         upOrDown(menu, ch, choiceMenuSize);
 
         if ('q' == ch) {
             switch (menu.getMenuIndex()) {
                 case 0:
-                    if (getDb() != null) {
-                        List<People> findList = null;
-
-                        while (true) {
-                            System.out.print("\n\nВведите сумму вклада:\n ");
-                            int c = scanner.nextInt();
-
-                            findList = getDb().binSearch(getSortList(), c);
-                            if (findList != null) {
-                                getDb().print(findList);
-                                break;
-                            } else
-                                System.out.println("Нет такой суммы, попробуйте еще раз!");
-
-                        }
-                    } else {
-                        System.out.println("База данных пуста!");
-                        System.out.println("------------------");
+                    for (int i = 0; i < findList.size(); i++) {
+                        avl.root = avl.insert(avl.root, findList.get(i));
                     }
-
-                    return false;
+                    avl.print(avl.root);
+                    break;
                 case 1:
-                    // Строим АВЛ дерево
-
-                    if (getDb() != null) {
-                        List<People> findList = null;
-
-                        while (true) {
-                            System.out.print("\n\nВведите сумму вклада:\n ");
-                            int c = scanner.nextInt();
-
-                            findList = getDb().binSearch(getSortList(), c);
-                            if (findList != null)
-                                break;
-                            else {
-                                System.out.println("Нет такой суммы, попробуйте еще раз!");
-                                System.out.println("------------------------------------");
-                            }
-                        }
-
-                        setAvl(new AVL());
-                        for (int i = 0; i < findList.size(); i++) {
-                            getAvl().root = getAvl().insert(getAvl().root, findList.get(i));
-                        }
-                    } else {
-                        System.out.println("База данных пуста!");
-                        System.out.println("-------------------");
-                    }
-                    return false;
-                case 2:
-                    // Выводим дерево
-                    if (getAvl() != null) {
-                        System.out.println("Вывод дерева: ");
-                        getAvl().print(getAvl().root);
-                    } else {
-                        System.out.println("Сначала постройте дерево");
-                        System.out.println("------------------------");
-                    }
-                    return false;
-                case 3:
-                    if (getAvl() != null) {
+                    if (avl.root != null) {
+                        System.out.println("---------------------------------------");
                         System.out.println("Поиск в дереве, введите фио вкладчика: ");
                         while (true) {
-                            Vertex p = getAvl().search(getAvl().root, scanner.nextLine());
+                            Vertex p = avl.search(avl.root, scanner.nextLine());
 
                             if (p == null) {
                                 System.out.println("Попробуйте еще раз!");
                                 System.out.println("-------------------");
                             } else {
-                                getDb().printOneElement(p);
+                                db.printOneElement(p);
                                 break;
                             }
                         }
                     } else {
-                        System.out.println("Сначала постройти дерево!");
-                        System.out.println("-------------------------");
+                        System.out.println("Сначала постройте дерево!");
+                        System.out.println("------------------------");
                     }
-                    return false;
-
-                case 4:
-                    // Выход назад
-
+                    break;
+                case 2:
                     return true;
             }
 
@@ -127,75 +75,70 @@ public class Button extends Menu {
         return false;
     }
 
-    public void pressMainMenu(Menu mainMenu) throws IOException {
+    public List<People> pressMainMenu(Menu mainMenu, DataBase db, AVL avl, List<People> sortList) throws IOException {
         upOrDown(mainMenu, ch, menuSize);
 
         if ('q' == ch) {
             switch (mainMenu.getMenuIndex()) {
                 case 0:
-                    //Считывание бд
-                    if (getDb() == null) {
-                        System.out.println("База считалась");
-                        setDb(new DataBase());
-                        getDb().read("testBase3.dat");
-                    } else {
-                        System.out.println("База данных уже была считанна!");
-                        System.out.println("-----------------------------");
-                    }
+                    // Вывод база данных
+                    db.print(sortList);
                     break;
                 case 1:
                     // Сортируем нашу дб
                     MergeSort mergeSort = new MergeSort();
-
-                    if (getDb() != null) {
-                        setSortList(mergeSort.sort(getDb().getPeoples()));
-                    } else {
-                        System.out.println("База данных пуста");
-                        System.out.println("------------------");
-                    }
-                    break;
+                    sortList = mergeSort.sort(db.getPeoples());
+                    // Запоминаем что дб отсортированна
+                    flag = true;
+                    return sortList;
                 case 2:
-                    //Вывод БД
-                    try {
-                        getDb().print(getDb().getPeoples());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        System.out.println("База данных пуста");
-                        System.out.println("------------------");
+                    // BinSearch
+                    if (flag) {
+                        List<People> findList = null;
+                        Scanner sc = new Scanner(System.in);
+
+                        while (true) {
+                            System.out.print("\n\nВведите сумму вклада, по которой будет выполнен поиск:\n ");
+                            int c = sc.nextInt();
+
+                            findList = db.binSearch(sortList, c);
+                            if (findList != null) {
+                                db.print(findList);
+                                break;
+                            } else {
+                                System.out.println("Нет такой суммы, попробуйте еще раз!");
+                                System.out.println("------------------------------------");
+                            }
+                        }
+
+                        // Менюшка для дерева
+
+                        Menu menuSettings = new Menu(choiceMenuSize);
+
+
+                        while (true) {
+                            menuSettings.printMenu(menuSettings, menuSettings.choiceMenu, menuSettings.choiceMenuSize);
+                            Button button = new Button(System.in.read());
+                            System.in.read();
+                            if (button.pressChoiceMenu(menuSettings, findList, avl, db))
+                                break;
+                        }
+
+                    } else {
+                        System.out.println("Сначала отсортируйте базу данных!");
+                        System.out.println("---------------------------------");
                     }
                     break;
-
                 case 3:
-                    //Вывод отсортированную БД
-                    if (getSortList() == null) {
-                        System.out.println("База данных не отсортированна!");
-                        System.out.println("------------------------------");
-                        break;
-                    }
-                    getDb().print(getSortList());
+                    // Кодирование
                     break;
 
                 case 4:
-                    // Поиск по сумме вклада
-                    Menu menuSettings = new Menu(choiceMenuSize);
-
-                    while (true) {
-                        menuSettings.printMenu(menuSettings, menuSettings.choiceMenu, menuSettings.choiceMenuSize);
-                        Button button = new Button(System.in.read());
-                        System.in.read();
-                        if (button.pressChoiceMenu(menuSettings))
-                            break;
-                    }
-
-                    break;
-
-                case 5:
-                    //Кодирование
-
-                    break;
-                case 6:
                     System.exit(0);
             }
         }
+        return sortList;
     }
+
+
 }

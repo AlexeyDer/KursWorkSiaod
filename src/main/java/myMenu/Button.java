@@ -1,11 +1,15 @@
 package myMenu;
 
+import Coding.Crypto;
+import Coding.ShanonCode;
 import KursWork.*;
 import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 import java.sql.DatabaseMetaData;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Button extends Menu {
@@ -42,6 +46,7 @@ public class Button extends Menu {
         if ('q' == ch) {
             switch (menu.getMenuIndex()) {
                 case 0:
+                    //
                     if (avl.root == null) {
                         for (int i = 0; i < findList.size(); i++) {
                             avl.root = avl.insert(avl.root, findList.get(i));
@@ -133,6 +138,41 @@ public class Button extends Menu {
                     break;
                 case 3:
                     // Кодирование
+                    ShanonCode coding = new ShanonCode();
+                    String text = "";
+                    List<Crypto> cryptos = new LinkedList<>();
+
+                    for (People i : db.getPeoples()) {
+                        text += i.getFioVklad();
+                        text += i.getSum() + " ";
+                        text += i.getDate();
+                        text += i.getFioAdv();
+                    }
+             //       text.toLowerCase((new Locale("ru")));
+                    cryptos = coding.fillAlphabet(cryptos, text);
+                    cryptos = coding.SelectSort(cryptos);
+                    cryptos = coding.shennon(cryptos);
+
+                    String finalCode = "";
+
+                    for (int i = 0; i < text.length(); i++) {
+                        for (int j = 1; j < cryptos.size(); j++) {
+                            if (text.charAt(i) == cryptos.get(j).getCharacter()) {
+                                finalCode += cryptos.get(j).getCodeCharacter();
+                                break;
+                            }
+                        }
+                    }
+
+                    for (int i = 1; i < cryptos.size(); i++) {
+                        System.out.println(cryptos.get(i).getCharacter() + " " + cryptos.get(i).getP() + " " +
+                                cryptos.get(i).getCodeCharacter());
+                    }
+
+                    System.out.println("\n\n" + finalCode);
+
+
+
                     break;
 
                 case 4:

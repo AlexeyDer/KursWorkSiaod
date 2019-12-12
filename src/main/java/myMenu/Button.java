@@ -42,8 +42,10 @@ public class Button extends Menu {
         if ('q' == ch) {
             switch (menu.getMenuIndex()) {
                 case 0:
-                    for (int i = 0; i < findList.size(); i++) {
-                        avl.root = avl.insert(avl.root, findList.get(i));
+                    if (avl.root == null) {
+                        for (int i = 0; i < findList.size(); i++) {
+                            avl.root = avl.insert(avl.root, findList.get(i));
+                        }
                     }
                     avl.print(avl.root);
                     break;

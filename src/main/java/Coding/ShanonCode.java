@@ -36,7 +36,8 @@ public class ShanonCode {
                 }
 
                 double p = (double) countChar / (double) textSize;
-                cryptos.add(new Crypto(text.charAt(i), p));
+
+                cryptos.add(new Crypto(text.charAt(i), p, ""));
                 countChar = 0;
             }
         }
@@ -70,7 +71,7 @@ public class ShanonCode {
 
         for (int i = 1; i < cryptos.size(); i++) {
             for (int j = 0; j < L[i]; j++) {
-                cryptos.get(i).setCodeCharacter("" + C[i][j]);
+                cryptos.get(i).setCodeCharacter(cryptos.get(i).getCodeCharacter() + C[i][j]);
             }
         }
 
@@ -83,7 +84,7 @@ public class ShanonCode {
             sumlength += (L[i] * cryptos.get(i).getP());
         }
 
-        System.out.println("H = " + entrophy + " L = " + sumlength);
+        System.out.println("H = " + entrophy + " L = " + sumlength + "\n");
 
         return cryptos;
     }

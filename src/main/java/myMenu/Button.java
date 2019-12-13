@@ -7,6 +7,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 import java.sql.DatabaseMetaData;
+import java.time.temporal.IsoFields;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -158,23 +159,26 @@ public class Button extends Menu {
                     cryptos = coding.SelectSort(cryptos);
                     cryptos = coding.shennon(cryptos);
 
-                    String finalCode = "";
-
-                    for (int i = 0; i < text.length(); i++) {
-                        for (int j = 1; j < cryptos.size(); j++) {
-                            if (text.charAt(i) == cryptos.get(j).getCharacter()) {
-                                finalCode += cryptos.get(j).getCodeCharacter();
-                                break;
-                            }
-                        }
-                    }
-
                     for (int i = 1; i < cryptos.size(); i++) {
                         System.out.println(cryptos.get(i).getCharacter() + " " + cryptos.get(i).getP() + " " +
                                 cryptos.get(i).getCodeCharacter());
                     }
 
-                    System.out.println("\n\n" + finalCode);
+//                    String finalCode = "";
+//
+//                    int textLen = text.length();
+//                    int crypSize = cryptos.size();
+//
+//                    for (int i = 0; i < textLen ; i++) {
+//                        for (int j = 1; j < crypSize; j++) {
+//                            if (text.charAt(i) == cryptos.get(j).getCharacter()) {
+//                                finalCode += cryptos.get(j).getCodeCharacter();
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    System.out.println("\n\n" + finalCode);
 
 
 

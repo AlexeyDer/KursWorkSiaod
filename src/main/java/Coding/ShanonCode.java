@@ -36,6 +36,7 @@ public class ShanonCode {
                 }
 
                 double p = (double) countChar / (double) textSize;
+                Math.round((p * 1000)/1000);
 
                 cryptos.add(new Crypto(text.charAt(i), p, ""));
                 countChar = 0;
@@ -57,13 +58,13 @@ public class ShanonCode {
 
         for (int i = 1; i < cryptos.size(); i++) {
             Q[i] = Q[i - 1] + cryptos.get(i).getP();
-            L[i] =  Math.ceil(Math.abs(Math.log(cryptos.get(i).getP()) / Math.log(2.0)));
+            L[i] = - ((Math.log(cryptos.get(i).getP()))) + 1;
         }
 
         for (int i = 1; i < cryptos.size(); i++) {
             for (int j = 0; j < L[i]; j++) {
                 Q[i - 1] = Q[i - 1] * 2.0;
-                C[i][j] = (int) Q[i - 1];
+                C[i][j] = (int) (Q[i - 1]);
                 if (Q[i - 1] > 1)
                     Q[i - 1] = Q[i - 1] - 1;
             }
@@ -96,7 +97,7 @@ public class ShanonCode {
             int min_i = i;
 
             for (int j = i + 1; j < cryptos.size(); j++) {
-                if (cryptos.get(j).getP() > cryptos.get(i).getP()) {
+                if (cryptos.get(j).getP() > cryptos.get(min_i).getP()) {
                     min_i = j;
                 }
             }

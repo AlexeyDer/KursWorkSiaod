@@ -3,16 +3,16 @@ package myMenu;
 import KursWork.Menu;
 
 public interface InterfaceMenu {
-    public final int menuSize = 5;
+    public final int menuSize = 6;
     public final String templateMenu[] = {
             "Просмотр базы данных", "Сортировка базы данных",
-            "Бинарный поиск", "Кодирование", "Завершить программу"
+            "Бинарный поиск", "Вывести дерево поиска", "Кодирование", "Завершить программу"
     };
 
 
-    public final int choiceMenuSize = 3;
+    public final int choiceMenuSize = 2;
     public final String choiceMenu[] = {
-            "Вывести дерево поиска", "Поиcк по дереву", "Вернуться назад"
+            "Поиcк по дереву", "Вернуться назад"
     };
 
     public default void printMenu(Menu menu, String[] notes, int size) {

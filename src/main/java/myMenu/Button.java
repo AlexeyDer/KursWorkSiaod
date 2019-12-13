@@ -14,6 +14,7 @@ public class Button extends Menu {
     private int code;
     private static boolean flag = false;
     private static boolean avlTreeFlag = true;
+    private static List<People> findList = null;
 
 
     public Button() {
@@ -43,18 +44,18 @@ public class Button extends Menu {
 
         if ('q' == ch) {
             switch (menu.getMenuIndex()) {
+//                case 0:
+//                    //
+//                    if (avlTreeFlag) {
+//                        for (int i = 0; i < findList.size(); i++) {
+//                            avl.root = avl.insert(avl.root, findList.get(i));
+//                        }
+//                        avlTreeFlag = false;
+//                    }
+//                    AVL.setG(1);
+//                    avl.print(avl.root);
+//                    break;
                 case 0:
-                    //
-                    if (avlTreeFlag) {
-                        for (int i = 0; i < findList.size(); i++) {
-                            avl.root = avl.insert(avl.root, findList.get(i));
-                        }
-                        avlTreeFlag = false;
-                    }
-                    AVL.setG(1);
-                    avl.print(avl.root);
-                    break;
-                case 1:
                     if (avl.root != null) {
                         System.out.println("---------------------------------------");
                         System.out.println("Поиск в дереве, введите фио вкладчика: ");
@@ -75,7 +76,7 @@ public class Button extends Menu {
                         System.out.println("------------------------");
                     }
                     break;
-                case 2:
+                case 1:
                     return true;
             }
 
@@ -103,7 +104,7 @@ public class Button extends Menu {
                 case 2:
                     // BinSearch
                     if (flag) {
-                        List<People> findList = null;
+
                         Scanner sc = new Scanner(System.in);
 
                         while (true) {
@@ -120,25 +121,42 @@ public class Button extends Menu {
                             }
                         }
 
-                        // Менюшка для дерева
-
-                        Menu menuSettings = new Menu(choiceMenuSize);
-
-
-                        while (true) {
-                            menuSettings.printMenu(menuSettings, menuSettings.choiceMenu, menuSettings.choiceMenuSize);
-                            Button button = new Button(System.in.read());
-                            System.in.read();
-                            if (button.pressChoiceMenu(menuSettings, findList, avl, db))
-                                break;
-                        }
-
                     } else {
                         System.out.println("Сначала отсортируйте базу данных!");
                         System.out.println("---------------------------------");
                     }
                     break;
                 case 3:
+                    if (findList == null) {
+                        System.out.println("Сначала сделайте поиск!");
+                        System.out.println("------------------------");
+                        break;
+                    }
+
+                    if (avlTreeFlag) {
+                        for (int i = 0; i < findList.size(); i++) {
+                            avl.root = avl.insert(avl.root, findList.get(i));
+                        }
+                    }
+                    avlTreeFlag = false;
+
+                    AVL.setG(1);
+                    avl.print(avl.root);
+
+                    // Менюшка для дерева
+
+                    Menu menuSettings = new Menu(choiceMenuSize);
+
+                    while (true) {
+                        menuSettings.printMenu(menuSettings, menuSettings.choiceMenu, menuSettings.choiceMenuSize);
+                        Button button = new Button(System.in.read());
+                        System.in.read();
+                        if (button.pressChoiceMenu(menuSettings, findList, avl, db))
+                            break;
+                    }
+
+                    break;
+                case 4:
                     // Кодирование
                     ShanonCode coding = new ShanonCode();
                     String text = "";
@@ -150,7 +168,7 @@ public class Button extends Menu {
                         text += i.getDate();
                         text += i.getFioAdv();
                     }
-             //       text.toLowerCase((new Locale("ru")));
+                    //       text.toLowerCase((new Locale("ru")));
                     cryptos = coding.fillAlphabet(cryptos, text);
                     cryptos = coding.SelectSort(cryptos);
                     cryptos = coding.shennon(cryptos);
@@ -177,10 +195,9 @@ public class Button extends Menu {
 //                    System.out.println("\n\n" + finalCode);
 
 
-
                     break;
 
-                case 4:
+                case 5:
                     System.exit(0);
             }
         }

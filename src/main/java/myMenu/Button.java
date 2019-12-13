@@ -1,16 +1,12 @@
 package myMenu;
 
-import Coding.Crypto;
+import Coding.Coder;
 import Coding.ShanonCode;
 import KursWork.*;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
-import java.sql.DatabaseMetaData;
-import java.time.temporal.IsoFields;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Button extends Menu {
@@ -146,7 +142,7 @@ public class Button extends Menu {
                     // Кодирование
                     ShanonCode coding = new ShanonCode();
                     String text = "";
-                    List<Crypto> cryptos = new LinkedList<>();
+                    List<Coder> cryptos = new LinkedList<>();
 
                     for (People i : db.getPeoples()) {
                         text += i.getFioVklad();
@@ -161,7 +157,7 @@ public class Button extends Menu {
 
                     for (int i = 1; i < cryptos.size(); i++) {
                         System.out.println(cryptos.get(i).getCharacter() + " " + cryptos.get(i).getP() + " " +
-                                cryptos.get(i).getCodeCharacter());
+                                cryptos.get(i).getCodeChar());
                     }
 
 //                    String finalCode = "";

@@ -1,22 +1,22 @@
 package Coding;
 
-public class Crypto {
+public class Coder {
     char character;
     double p;
-    String codeCharacter;
+    String codeChar;
 
-    public Crypto(char ch, double p, String codeCharacter) {
+    public Coder(char ch, double p, String codeCharacter) {
         this.character = ch;
         this.p = p;
-        this.codeCharacter = codeCharacter;
+        this.codeChar = codeCharacter;
     }
 
-    public Crypto(char ch, double p) {
+    public Coder(char ch, double p) {
         this.character = ch;
         this.p = p;
     }
 
-    public Crypto(double p) {
+    public Coder(double p) {
         this.p = p;
     }
 
@@ -28,8 +28,8 @@ public class Crypto {
         return p;
     }
 
-    public String getCodeCharacter() {
-        return codeCharacter;
+    public String getCodeChar() {
+        return codeChar;
     }
 
 
@@ -41,7 +41,7 @@ public class Crypto {
         this.p = p;
     }
 
-    public void setCodeCharacter(String codeCharacter) {
-        this.codeCharacter = codeCharacter;
+    public void setCodeChar(String codeChar) {
+        this.codeChar = codeChar;
     }
 }

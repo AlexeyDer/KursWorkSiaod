@@ -2,7 +2,6 @@ package Coding;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ShanonCode {
@@ -10,9 +9,9 @@ public class ShanonCode {
     private int[] P;
     private int[] Q;
     private double[] L;
-    private List<Crypto> C;
+    private List<Coder> C;
 
-    public List<Crypto> fillAlphabet(List<Crypto> cryptos, String text) throws IOException {
+    public List<Coder> fillAlphabet(List<Coder> cryptos, String text) throws IOException {
 
         boolean isHas = false;
         int countChar = 0;
@@ -38,14 +37,14 @@ public class ShanonCode {
                 double p = (double) countChar / (double) textSize;
                 Math.round((p * 1000)/1000);
 
-                cryptos.add(new Crypto(text.charAt(i), p, ""));
+                cryptos.add(new Coder(text.charAt(i), p, ""));
                 countChar = 0;
             }
         }
         return cryptos;
     }
 
-    public List<Crypto> shennon(List<Crypto> cryptos) {
+    public List<Coder> shennon(List<Coder> cryptos) {
 
         cryptos.add(0, null);
 
@@ -58,7 +57,7 @@ public class ShanonCode {
 
         for (int i = 1; i < cryptos.size(); i++) {
             Q[i] = Q[i - 1] + cryptos.get(i).getP();
-            L[i] = - ((Math.log(cryptos.get(i).getP()))) + 1;
+            L[i] = - ((Math.log(cryptos.get(i).getP()) / Math.log(2.0))) + 1;
         }
 
         for (int i = 1; i < cryptos.size(); i++) {
@@ -72,7 +71,7 @@ public class ShanonCode {
 
         for (int i = 1; i < cryptos.size(); i++) {
             for (int j = 0; j < L[i]; j++) {
-                cryptos.get(i).setCodeCharacter(cryptos.get(i).getCodeCharacter() + C[i][j]);
+                cryptos.get(i).setCodeChar(cryptos.get(i).getCodeChar() + C[i][j]);
             }
         }
 
@@ -90,8 +89,8 @@ public class ShanonCode {
         return cryptos;
     }
 
-    public List<Crypto> SelectSort(List<Crypto> cryptos) {
-        List<Crypto> t = new ArrayList<>(1);
+    public List<Coder> SelectSort(List<Coder> cryptos) {
+        List<Coder> t = new ArrayList<>(1);
 
         for (int i = 0; i < cryptos.size() - 1; i++) {
             int min_i = i;

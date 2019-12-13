@@ -42,6 +42,12 @@ public class Menu implements InterfaceMenu {
         }
         List<People> sortList = db.getPeoples();
 
+        System.out.println("-----------Кнопки меню--------------");
+        System.out.println("-----w - вверх----s---вниз----------");
+        System.out.println("-------q-выбрать пункт меню----==---");
+        System.out.println("------------------------------------");
+
+
         while (true) {
             // Выводим наше меню
             mainMenu.printMenu(mainMenu, templateMenu, menuSize);
